@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+
+{% block content %}
+	<center>
+		<h1> PSITS Event Registration System </h1>
+		<h2>Welcome Guest!</h2>
+		{% if check_errors %}
+		<error> Invalid Username/Password, Please try again! </error>
+		{% endif %}
+		<form action="/login/" method="post">
+		{% csrf_token %}
+			<label for="login">Username </label>
+			<input type="text" name="username" value="{{ username}}" id="login" placeholder="Type username here"/><br/>
+			<label for="password">Password </label>
+			<input type="password" name="password" value="" id="password" placeholder="Type password here"/><br />
+			<input type="submit" value="Log In" />
+		</form>
+	</center>
+
+
+{% endblock content %}

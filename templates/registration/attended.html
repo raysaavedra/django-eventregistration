@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} PSITS Attendance {% endblock %}
+
+{% block extrajstop %}
+<script type="text/javascript">
+
+    $( document ).ready( function() 
+    {
+	    $( '#school' ).change( function(e) 
+            {     
+                      
+              q = $( '#school' ).val()
+              if (q != '---'){
+              $( '#results' ).hide().html( '' ).load( '{% url search_attended %}?q=' + q).fadeIn(500);}
+              
+            });
+
+    });
+</script>
+{% endblock extrajstop %}
+
+{% block content %}
+<h2>Student</h2>
+<table>
+<tr>
+<td colspan="8" class="right">
+    School:
+    <select id='school'>
+        <option value="---">---</option>
+        {% for s in school %}
+        <option value="{{ s.school }}">{{ s.school }}</option>
+        {% endfor %}
+        <option value="%">all</option>
+    </select>
+
+</td>
+</tr>
+</table>
+<table id="stud_table">
+    <div class="margin">
+        <span class="hint">Select in a query string to search for students</span></br>        
+		<div id="results"></div>
+	</div>
+</table>
+{% endblock %}

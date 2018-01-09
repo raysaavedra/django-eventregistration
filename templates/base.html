@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/static/css/stylesheet.css">
+	<script src="/static/js/jquery-1.9.1.js"></script>
+
+	<title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    {% block extracss %}
+    {% endblock extracss %}
+
+    {% block extrajstop %}
+    {% endblock extrajstop %}
+
+</head>
+
+<body>
+	<div class="container">
+		{% if request.user.is_authenticated %}
+		{% block header %}
+		<table class='header-top'>
+	        <tr>
+	            <td class="right">
+	            	{% if request.session.event_id %}
+	            		{% if request.session.isadmin %}
+	            			<a id="linkoff" href="{% url event %}">{{ request.session.event_activated }}</a> 
+	            		{% else %}
+	            			<a>{{ request.session.event_activated }}</a> 
+	            		{% endif %}
+	            		{% else %}
+	            		{% if request.session.isadmin %}
+	            		<a id="linkoff" href="{% url event %}">None</a>
+	            		{% else %}
+	            			<a>None</a>
+	            		{% endif %}
+	            	{% endif %}
+	            	(Active Event) |
+	            	 {% if request.session.isadmin %}
+	                	Logged in as Admin
+	                {% else %}
+	                	Logged in as Normal User
+	                {% endif %}
+	            </br>
+	                Welcome, {{ request.user.username }}! (<a id="linkoff1" href="{% url logout %}">logout</a>)       
+	            </td>
+	        </tr>
+   		</table>
+   		<table class="header-bottom">
+	        <tr >
+	            <td>
+	                <a href="{% url attend %}">Register</a></li>
+	            </td>
+	            <td>
+	            <a href="{% url attended_form %}">Attended</a></li>
+	            </td>
+	        </tr>
+               
+</table>
+		{% endblock header %}
+	{% endif %}
+	<div id="content">
+		{% block content %}
+		{% endblock content %}
+	</div>
+		<div id="footer">
+			{% block footer %}
+			<br /><br /><br /><br /><br /><br />
+		        <p>Copyright © 2013, <b>Source Code: The Official CSSEC Programming Unit.</b> <p>Ateneo de Davao University</p></b><div class='hint'>All rights reserved.</div></p>
+			{% endblock footer %}
+		</div>
+	</div>
+
+</body>
+
+</html>

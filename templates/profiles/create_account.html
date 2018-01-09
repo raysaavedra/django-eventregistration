@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Create Account {% endblock %}
+
+{% block content %}
+
+		<center><h2>Create New Account</h2></center>
+		{% if success %}
+			Account successfully created!
+		{% endif %}
+		<h3>Please enter your details below</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ password_form.as_p }}	
+        {{ user_form.as_p }}
+        
+        <right><input type="submit" value="Register" /></right>
+	</form>
+{% endblock %}

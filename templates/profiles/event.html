@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %} Events {% endblock %}
+
+
+{% block extrajstop %}
+   <script type="text/javascript">
+$( document ).ready( function() {
+
+    $(":radio").click(function() {
+    	   q = $(this).val()
+                $( 'tr.activate' ).removeClass().addClass('odd')
+
+                $.getJSON( '{% url deactivate_event %}', function(data) {
+                     });
+
+                $.getJSON( '{% url activate_event %}?q=' + q, function(data) {
+                        $( 'a#linkoff' ).text(data) 
+                        $( 'tr#'+ q ).removeClass().addClass('activate') });
+            
+            });
+	});
+    </script>
+{% endblock extrajstop %}
+
+{% block content %}
+</br>
+<a href="{% url create_event %}"><input type="submit" id="create_event" value="Create Event" /></a>
+<a href="{% url create_account %}"><input type="submit" id="create_account" value="Create Account" /></a>
+<a href="{% url add_student %}"><input type="submit" id="create_student" value="Add New Student" /></a>
+
+<h2>Events</h2>
+<div id="results">
+<div class="margin">
+    <table>
+    {% if events %}
+    <tr class='even'> 
+    <td colspan="8" class="right">
+	<strong>Found {{ events|length }} event{{ events|pluralize }}</strong>
+	</td>
+	</tr>
+    </table>
+    <table>
+    <tr>
+        <th>Event Name</th>
+        <th>Date</th>
+        <th>Activated</th>
+    </tr>
+    {% for e in events %}
+        {% if e.activated %}
+        <tr class='activate' id ='{{ e.id }}'>
+        {% else %}
+        <tr class='odd' id ='{{ e.id }}'>
+        {% endif %}
+            <td>{{ e.event.name }}</td>
+            <td>{{ e.event.date_start }}</td>     
+            <td>
+            {% if e.activated %}
+            <input type="radio" name="{{ e.admin.username }}-event" checked="checked" value="{{ e.id }}" id="{{ e.id }}"/>
+            {% else %}
+            <input type="radio" name="{{ e.admin.username }}-event" value="{{ e.id }}" id="{{ e.id }}" />
+            {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    {% else %}
+    <tr class='even'>
+    <td>No events created</td>
+    </tr>
+    {% endif %}
+    </tr>
+    </table>
+</div>
+</div>
+{% endblock %}

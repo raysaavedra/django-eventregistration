@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Create Event {% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="/static/css/ui/themes/smoothness/jquery-ui.css" />
+    <style type="text/css">
+        .ui-widget { font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 0.8em; }
+    </style>
+{% endblock extracss %}
+
+{% block extrajstop %}
+    <script src="/static/js/jquery-1.9.1.js"></script>
+    <script src="/static/js/jquery-ui.js"></script>
+    <script>
+    $(function() {
+        $( "#id_date_start" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,  showMonthAfterYear: true, showOn: "button", buttonImage: "/static/img/calendar-icon.gif", buttonImageOnly: true, yearRange : 'c-0:c+1'});
+    });
+    </script>
+{% endblock extrajstop %}
+
+{% block content %}
+<center><h2>Create New Event</h2></center>
+		{% if success %}
+			Event successfully created!
+		{% endif %}
+		<h3>Please enter event details below</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ eventform.as_p }}	
+
+        <right><input type="submit" value="Register" /></right>
+	</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+
+{% if students|length %}
+<table>
+	<tr class='even'>
+		<td colspan="8" class="right">
+        <div class='message'></div>
+		<strong>Found {{ students|length }} student{{ students|pluralize }}</srong>
+		</td>
+	</tr>
+    </table>
+    <table>
+     <tr>
+        <th id="stud_th">StudentID</th>
+        <th id="stud_th">LastName</th>
+        <th id="stud_th">FirstName</th>
+        <th id="stud_th">Gender</th>   
+        <th id="stud_th">Year</th>    
+        <th id="stud_th">School</th>
+        <th id="stud_th">Time Attended</th>
+    </tr>
+        
+    {% for e in students %}
+    <tr class="{% cycle 'odd' 'even' %}">
+        <td>{{ e.student.studentID }}</td>
+        <td>{{ e.student.lastname }}</td>
+        <td>{{ e.student.firstname }}</td>
+        <td>{{ e.student.gender }}</td>
+        <td>{{ e.student.year }}</td>
+        <td>{{ e.student.school }}</td>
+        <td>{{ e.time_in|time }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+	<div class="note">
+        {{ message }}
+	</div>
+{% endif %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %} Add Student {% endblock %}
+
+
+
+{% block content %}
+<center><h2>Add New Student</h2></center>
+*Note: Add students only if student is not found on the main database(irregulars/other reasons)*
+</br>
+		{% if success %}
+			Student successfully added!
+		{% endif %}
+		<h3>Please enter student details below</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ studentform.as_p }}	
+
+        <right><input type="submit" value="Register" /></right>
+	</form>
+{% endblock %}

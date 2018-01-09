@@ -1,0 +1,135 @@
+body {
+  background-color: #FFF;
+  font-size: 1.0em;
+  font-family: "Lucida Grande", Tahoma, Helvetica, sans-serif;
+  color: #564b47;
+  padding: 20px;
+  margin: 0px;
+  text-align: center;
+}
+
+div {
+  padding: 0px;
+  margin: 10px;
+}
+div.container {
+	position:static;
+    margin: auto;
+	width:1000px;
+}
+div.field {
+  text-align: left;
+  padding-left: 25px;
+}
+div#main {
+	position:static;
+    align=center;
+	width:1000px;
+}
+table {
+  position: static;
+  width: 100%;
+  border: 1px solid #DDDDB2;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+tr {
+  padding-bottom: 5px;
+}
+
+tr.odd {
+  background: #FFF;
+}
+
+tr.even {
+  background: #FFFFD4;
+}
+table.header-top {
+  background: #FFFFD4;
+  border-bottom-color: #FFFFD4; 
+}
+table.header-bottom {
+  border-top-color: #FFFFD4; 
+}
+tr.activate {
+  background:  #f3e8bb;
+}
+th {
+  text: bold;
+}
+
+td {
+  margin: 0;
+  padding: 5px 5px 5px 3px;
+  vertical-align: top;
+}
+
+td.right {
+  text-align: right;
+}
+td.left {
+  text-align: left;
+}
+
+#centered { 	
+  text-align: left;
+  vertical-align: middle;	
+  margin: 0px auto;
+  padding: 20px;
+  width: 550px;
+  background-color: #FFF;
+  border: 1px solid #CCC;
+}
+
+#spinner {
+  display: none;
+  position: relative;
+}
+div.padded {
+  padding-top: 10px;
+}
+
+div.margin {
+  margin-top: 20px;
+}
+
+div.clear {
+  clear: both;
+}
+
+div.note {
+  padding: 15px;
+  background: #FFFFD4;
+  border: 1px solid #DDDDB2;
+}
+div.login-header {
+  text-align: right;
+  border-bottom-color: #FFFFD4;
+  font-size: 2em;
+}
+div.login-form {
+  text-align: right;
+}
+.hint {
+  font-size: 0.8em;
+  color: #888;
+}
+.form_name_info {
+ width:50%;
+ margin: 5px;
+ border-color: #DDDDB2;
+}
+.error_message {
+ font-size: 0.8em;
+  color: #888;
+}
+textbox:focus {
+background-color: #FFFFD4;
+border: 3px solid #990000;
+margin-bottom:10px;
+}
+input[type="text"] {
+ margin-top: 10px;
+ margin-bottom: 10px;
+}
